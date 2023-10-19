@@ -1,5 +1,14 @@
 #include <iostream>
+#include <exception>
+#include <string>
 using namespace std;
+
+class FractionException : public std::exception {
+	public:
+const char* what() {
+		return "Denominator cannot be 0";
+	}
+};
 
 class Fraction {
 
@@ -26,18 +35,24 @@ public:
 	    return os;
 	}
 
-	Fraction& operator++(int num) {
-	    // Increment the value and return a reference to the updated object
-	    num++;
-	    return *this;
+	Fraction& operator++(int) {
+		num += den;
+		return *this;
 	}
 
 
 };
 
 
-Fraction operator++(const Fraction& fraction);
 Fraction operator+(const Fraction& left, const Fraction& right);
 Fraction operator-(const Fraction& left, const Fraction& right);
 Fraction operator*(const Fraction& left, const Fraction& right);
 Fraction operator/(const Fraction& left, const Fraction& right);
+Fraction& operator+=(Fraction& left, const Fraction& right);
+Fraction operator++(Fraction& fraction);
+int operator==(const Fraction& left, const Fraction& right);
+int operator!=(const Fraction& left, const Fraction& right);
+int operator>(const Fraction& left, const Fraction& right);
+int operator<(const Fraction& left, const Fraction& right);
+int operator>=(const Fraction& left, const Fraction& right);
+int operator<=(const Fraction& left, const Fraction& right);

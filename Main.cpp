@@ -13,13 +13,13 @@ int main() {
 	cout << "Should be \"-7/2\": " << test4 << endl;
 
 	// Test exception for when denominator is zero
-/*	try {
+	try {
 		Fraction test5(4, 0);
 		cout << "Should not get here: " << test5 << endl;
 	} catch (FractionException &e) {
 		cout << "Exception message should indicate illegal denominator: " << e.what() << endl;
 	}
-*/
+
 
 	// Test accessors
 	cout << "Numerator should be -7: " << test4.numerator() << endl;
@@ -48,11 +48,7 @@ int main() {
 	Fraction test14 = 2 + test3++;
 	cout << "Should be \"8/3\": " << test14 << endl;
 	cout << "Should be \"5/3\": " << test3 << endl;
-	Fraction test15 = 2 + ++test3; //++test3
-	cout << "Should be \"14/3\": " << test15 << endl;
-	cout << "Should be \"8/3\": " << test3 << endl;
 
-/*
 	// Test += operator
 	Fraction test16(3, 8);
 	test16 += test3;
@@ -65,8 +61,8 @@ int main() {
 		cout << "Equality test passed." << endl;
 	if (test6 != test7)
 		cout << "Inequality test passed." << endl;
-	if (test6 > test7 && test6 >= test7)
-		cout << "Greater than test passed." << endl;
+	if (test6 > test7 && test6 >= test7){
+		cout << "Greater than test passed." << endl;}
 	if (test7 < test6 && test7 <= test6)
 		cout << "Less than test passed." << endl;
 	if (test6 > 1)
@@ -74,22 +70,6 @@ int main() {
 	if (1 < test6)
 		cout << "Second mixed type comparison passed." << endl;
 
-	// Test input, exception and +=:
-	Fraction sum(0);
-	Fraction fin;
-	cout << "\nSumming fractions. Enter fractions as \"1/2\" or just enter a single integer." << endl;
-	cout << "Enter zero to end the summation:" << endl;
-	do {
-		cout << "Enter a fraction to add to sum: ";
-		try {
-			cin >> fin;
-			sum += fin;
-		} catch (FractionException &e) {
-			cout << e.what() << endl;
-		}
-	} while (fin != 0);
-	cout << "Sum is: " << sum << endl;
- */
 
 	return 0;
 

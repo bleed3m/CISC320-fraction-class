@@ -2,6 +2,9 @@
 
 Fraction::Fraction(int n, int d)
 {
+	if(d==0) {
+		throw FractionException();
+	}
 	num = n;
 	den = d;
 
@@ -95,12 +98,58 @@ Fraction operator/(const Fraction& left, const Fraction& right) {
 	return Fraction(num, den);
 }
 
+Fraction& operator+=(Fraction& left, const Fraction& right) {
+	int a = left.den;
+	int b = right.den;
 
-Fraction operator++(const Fraction& fraction) { // (variable++)
-
-    fraction++;
-    return fraction;  // Return the original value
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+	int gcd = a;
+    int lcm = (left.den * right.den) / gcd;
+    int sum_num = (left.num * (lcm / left.den)) + (right.num * (lcm / right.den));
+    left =  Fraction(sum_num, lcm);
+    return left;
 }
+
+Fraction operator++(Fraction& fraction) {
+	++fraction;
+	return fraction;
+}
+
+int operator==(const Fraction& left, const Fraction& right) {
+	if ((left.num == right.num) && (left.den == right.den)) {
+		return 1;
+	}
+	return 0;
+}
+
+int operator!=(const Fraction& left, const Fraction& right) {
+	if ((left.num != right.num) | (left.den != right.den)) {
+		return 1;
+	}
+	return 0;
+}
+
+int operator>(const Fraction& left, const Fraction& right) {
+	return (left.num * right.den) > (right.num * left.den);
+}
+
+int operator<(const Fraction& left, const Fraction& right) {
+	return (left.num * right.den) < (right.num * left.den);
+}
+
+int operator>=(const Fraction& left, const Fraction& right) {
+	return (left.num * right.den) >= (right.num * left.den);
+}
+
+int operator<=(const Fraction& left, const Fraction& right) {
+	return (left.num * right.den) <= (right.num * left.den);
+}
+
+
 
 Fraction::~Fraction() {
 
